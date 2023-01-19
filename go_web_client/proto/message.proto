@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+// protobuf 自己的命名空间
+package message;
+
+// Go 命名空间（Go包）
+option go_package = "/message";
+
+// 服务（接口）
+// 分别是：
+// 1 客户端发stream，服务端收
+// 2 服务端发stream，客户端收
+// 3 双向收发stream
+
+service RPC {
+   rpc C2S(stream C2SRequest) returns (C2SResponse);
+   rpc S2C(S2CRequest) returns (stream S2CResponse);
+   rpc CS(stream CSRequest) returns (stream CSResponse);
+}
+
+// 消息
+message C2SRequest {
+   string message = 1;
+}
+
+message C2SResponse {
+   string message = 1;
+}
+
+message S2CRequest {
+   string message = 1;
+}
+
+message S2CResponse {
+   string message = 1;
+}
+
+message CSRequest {
+   string message = 1;
+}
+
+message CSResponse {
+   string message = 1;
+}
