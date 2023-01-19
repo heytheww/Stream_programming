@@ -21,7 +21,7 @@ type Reply struct {
 }
 
 func main() {
-	// 基于整数的安全连接
+	// 基于证书的安全连接
 	conn, err := grpc.Dial("127.0.0.1:1234", grpc.WithTransportCredentials(insecure.NewCredentials()))
 
 	if err != nil {
@@ -82,10 +82,11 @@ func CS(conn *grpc.ClientConn) {
 
 	// 堵塞主协程，防止结束
 	waitc := make(chan struct{})
-	// 设置结束位，互相收发10条后结束收发
 
 	// 收发互不影响
 	go func() {
+		// 互相收发10条后结束收发
+
 		for flag := 10; flag >= 1; flag-- {
 			time.Sleep(time.Second)
 
