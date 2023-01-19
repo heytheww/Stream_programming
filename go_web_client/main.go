@@ -29,6 +29,7 @@ func main() {
 	}
 	defer conn.Close()
 
+	// 建议单个测试
 	// C2S(conn)
 	// S2C(conn)
 	CS(conn)
